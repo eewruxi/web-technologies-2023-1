@@ -2,6 +2,84 @@
 @import "./fonts.css";
 @import "./utils.css";
 
+p.p{
+    font-size: 16px;
+    line-height: 26px;
+    color: #1F3F68
+}
+
+h1.h1{
+    font-size: 64px;
+    color: #1F3F68;
+}
+
+h2.contacts-h2{
+    font-weight: 500;
+    font-size: 44px;
+    text-align: center;
+}
+
+h3.h3{
+    font-size: 36px;
+    text-align: center;
+}
+
+h4.h4{
+    font-size: 20px;
+    line-height: 30px;
+    color: #1F3F68;
+}
+
+input.input, textarea.input{
+    border: 1px solid #356EAD;
+    box-sizing: border-box;
+    border-radius: 10px;
+    opacity: 0.4;
+}
+.submit{
+    background: #5A98D0;
+    box-shadow: 5px 20px 50px rgb(16,112,117,0.2);
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: center;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+.contacts-form{
+    background: url("./../img/photo.jpg");
+}
+.custom-submit{
+    border: none;
+    border-radius: 10px;
+    color: #FFFFFF;
+    padding: 10px;
+    background: linear-gradient(90deg, rgb(75, 117, 230) 30%, rgb(138,86,233) 100%);
+}
+
+.breadcrumbs{
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgb(60,129,130)0%, rgb(147,185,186)40%);
+    padding: 5px;
+    color: #000100;
+    display: flex;
+    gap: 10px;
+}
+.breadcrumbs div{
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid #000000;
+    box-shadow: none;
+    border-left: none;
+    border-bottom: none;
+    border-top: none;
+}
+
+.breadcrumbs div a{
+    text-decoration: none;
+    color: #000000;
+}
 .test {
     color: yellow !important;
 }
