@@ -1,6 +1,6 @@
 function GetMinWord(array){
 
-    const patternWord = /[А-Яа-яA-Za-z]{2,}/g; //регулярное выражение ищет слова из двух и более букв
+    const patternWord = /[А-яA-Za-z]{2,}/g; //регулярное выражение ищет слова из двух и более букв
 
     //не является ли массив пустым, если пуст, возвращается пустая строка
     if(array.length === 0)
@@ -11,7 +11,7 @@ function GetMinWord(array){
         return array[0];
 
     //если в массиве более одного слова, все слова объединяются в одну строку через пробел
-    arr = array.join(" ");
+    let arr = array.join(" ");
     let minElement = arr.match(patternWord); //поиск совпадение с регуляркой
 
     if(minElement == null)
