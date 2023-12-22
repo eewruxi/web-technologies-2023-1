@@ -179,7 +179,8 @@ const map = {
     this.usedCells.push(foodCell);
     //console.log(this.usedCells);
     //Отрисовываем счетчик игрока
-    document.querySelector("#schet").innerHTML = snake.bodyLenght;
+    //**--------------------------------------------------------------------------
+    document.querySelector("#schet").innerHTML = 'Счёт ' + snake.bodyLenght;
   },
 };
 
@@ -204,6 +205,8 @@ const snake = {
     this.body = startBody;
     this.direction = direction;
     this.lastStepDirection = direction;
+    //**--------------------------------------------------------
+    this.bodyLenght = 0;
   },
 
   /**
@@ -235,12 +238,20 @@ const snake = {
       (snakePoint) => snakePoint.x === point.x && snakePoint.y === point.y
     );
   },
-
+  /****-----------------------------------------------------------
   /**
    * Двигает змейку на один шаг.
    */
-  makeStep() {},
+  makeStep() {
+    //получаем новую координату головы змейки
+    const newHeadPoint = this.getNextStepHeadPoint();
 
+    //добавляем новую координату головы в начало массива тела змейки
+    this.body.unshift(newHeadPoint);
+    //удаляем последний элемент массива, чтобы змейка сдвинулась на один шаг
+    this.body.pop();
+  },
+  /****-----------------------------------------------------------
   /**
    * Добавляет в конец тела змейки копию последнего элемента змейки.
    */
@@ -325,15 +336,18 @@ const food = {
     this.x = point.x;
     this.y = point.y;
   },
-
+  /****-----------------------------------------------------------
   /**
    * Определяет соответствует ли точка на которой находится еда той точке что была передана.
    * @param {{x: int, y: int}} point Точка, для проверки соответствия точке еды.
    * @returns {boolean} true, если точки совпали, иначе false.
    */
-  isOnPoint(point) {},
+  isOnPoint(point) {
+    return this.x === point.x && this.y === point.y;
+    //вернет true, если координаты совпадают
+  },
 };
-
+/****-----------------------------------------------------------
 /**
  * Статус игры.
  * @property {string} condition Статус игры.
@@ -430,6 +444,8 @@ const game = {
     this.snake.init(this.getStartSnakeBody(), "up");
     // Ставим еду на карту в случайную пустую ячейку.
     this.food.setCoordinates(this.getRandomFreeCoordinates());
+
+    document.querySelector("#schet").innerHTML = 'Счёт' + snake.bodyLenght;
     // Отображаем все что нужно для игры.
     this.render();
   },
@@ -493,6 +509,8 @@ const game = {
       // Если выиграли, завершаем игру.
       if (this.isGameWon()) {
         this.finish();
+        document.querySelector("#schet").innerHTML = `Вы выиграли`;
+        return;
       }
     }
     // Перемещаем змейку.
@@ -552,13 +570,33 @@ const game = {
   render() {
     this.map.render(this.snake.getBody(), this.food.getCoordinates());
   },
-
+  /****-----------------------------------------------------------
   /**
    * Отдает случайную не занятую точку на карте.
    * @return {{x: int, y: int}} Точку с координатами.
    */
-  getRandomFreeCoordinates() {},
+  getRandomFreeCoordinates() {
+    let freeCells = [];
 
+    //перебираем все ячейки игрового поля
+    for (let x = 0; x < this.config.getColsCount(); x++) {
+      for (let y = 0; y < this.config.getRowsCount(); y++) {
+        //проверяем, занята ли ячейка змейкой
+        if (!this.snake.isOnPoint({ x, y })) {
+          //если ячейка не занята, добавляем ее в массив свободных ячеек
+          freeCells.push({ x, y });
+        }
+      }
+    }
+
+    //проверяем, есть ли свободные ячейки
+    if (freeCells.length > 0) {
+      //если есть свободные ячейки, выбираем случайную из них
+      let randomIndex = Math.floor(Math.random() * freeCells.length);
+      return freeCells[randomIndex];
+    }
+  },
+  /****-----------------------------------------------------------
   /**
    * Обработчик события нажатия на кнопку playButton.
    */
@@ -619,26 +657,42 @@ const game = {
         return "";
     }
   },
-
+  /****-----------------------------------------------------------
   /**
    * Определяет можно ли назначить переданное направление змейке.
    * @param {string} direction Направление, которое проверяем.
    * @returns {boolean} true, если направление можно назначить змейке, иначе false.
    */
-  canSetDirection(direction) {},
+  canSetDirection(direction) {
+    const currentDirection = this.snake.direction;
+    //если текущее направление вверх или вниз, то новое направление должно быть влево или вправо, и наоборот
+    if ((currentDirection === 'up' || currentDirection === 'down') && (direction === 'left' || direction === 'right')) {
+
+      return true;
+    } else if ((currentDirection === 'left' || currentDirection === 'right') && (direction === 'up' || direction === 'down')) {
+      return true;
+    }
+    return false; //возвращаем false, если ни одно из условий не выполнилось
+  },
 
   /**
    * Проверяем произошла ли победа, судим по очкам игрока (длине змейки).
    * @returns {boolean} true, если игрок выиграл игру, иначе false.
    */
-  isGameWon() {},
+  isGameWon() {
+    // возвращает true, если длина тела змейки равна или превышает количество еды, необходимое для победы
+    return this.snake.bodyLenght >= this.config.getWinFoodCount()
+  },
 
   /**
    * Проверяет возможен ли следующий шаг.
    * @returns {boolean} true если следующий шаг змейки возможен, false если шаг не может быть совершен.
    */
-  canMakeStep() {},
+  canMakeStep() {
+    const newHeadPoint = this.snake.getNextStepHeadPoint();
+    return !this.snake.isOnPoint(newHeadPoint)
+  },
 };
-
+//****-----------------------------------------------------------
 // При загрузке страницы инициализируем игру.
 window.onload = game.init();
