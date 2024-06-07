@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Додо пицца</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="pizza">
+
+    <div class="pizza_types">
+        <div class="pizza_order_type pizza_order_type_active" data-type="Pepperoni">
+            <img class="pizza_img" src="../img/pepperoni.avif" alt="pepperoni">
+            <div class="pizza-order__pizza-type-text"> Пепперони </div>
+        </div>
+        <div class="pizza_order_type" data-type="Margarita">
+            <img class="pizza_img" src="../img/margarita.avif" alt="Margarita">
+            <div class="pizza-order__pizza-type-text"> Маргарита </div>
+        </div>
+        <div class="pizza_order_type" data-type="Bavarskaya">
+            <img class="pizza_img" src="../img/bavarskaya.avif" alt="Bavarskaya">
+            <div class="pizza-order__pizza-type-text"> Баварская </div>
+        </div>
+    </div>
+
+    <div class="header_size">
+            <h1>Выберите размер</h1>
+            <div class="pizza_sizes">
+                <div class="pizza_order_size" data-size="Small">
+                    Маленькая
+                </div>
+                <div class="pizza_order_size" data-size="Big">
+                    Большая
+                </div>
+                <div class="slider_size">
+
+                </div>
+            </div>
+
+
+        <div>
+            <h2>Добавить по вкусу</h2>
+            <div class="pizza_toppings">
+                <div class="pizza_order_topping" data-topping="Border">
+                    <img class="pizza_topping_img" src="../img/border.png" alt="">
+                    <div class="pizza_topping_name">
+                        Сырный бортик
+                    </div>
+                    <div>
+                        <span class="pizza_topping_price">150</span> ₽
+                    </div>
+                </div>
+                <div class="pizza_order_topping" data-topping="CreamCheese">
+                    <img class="pizza_topping_img" src="../img/creamcheese.png" alt="">
+                    <div class="pizza_topping_name">
+                        Сливочная моцарелла
+                    </div>
+                    <div>
+                        <span class="pizza_topping_price">50</span> ₽
+                    </div>
+                </div>
+                <div class="pizza_order_topping" data-topping="CheddarAndParmesan">
+                    <img class="pizza_topping_img" src="../img/cheder.png" alt="">
+                    <div class="pizza_topping_name">
+                        Чеддер и пармезан
+                    </div>
+                    <div>
+                        <span class="pizza_topping_price">150</span> ₽
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="pizza_button">
+            Добавить в корзину за
+            <span class="pizza_order_price">0</span> ₽ (<span class="pizza_order_calories">0</span> кКалл)
+        </button>
+
+    </div>
+
+</div>
+
+<script src="./pizza.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+.pizza {
+    padding: 50px;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+/*тип*/
+.pizza_types {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 40px;
+}
+
+.pizza_order_type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 8px;
+    transition: .5s;
+}
+
+.pizza_order_type:hover {
+    border-color: rgb(255, 105, 0);
+}
+
+.pizza_order_type_active {
+    border-color: rgb(255, 105, 0);
+}
+
+/*размер*/
+
+
+.pizza_sizes {
+    background-color: rgb(243, 243, 247);
+    display: flex;
+    border-radius: 30px;
+    position: relative;
+    padding: 4px;
+}
+
+.pizza_order_size {
+    z-index: 2;
+    flex: 2;
+    padding: 12px;
+    text-align: center;
+}
+
+.pizza_img {
+    max-width: 220px;
+}
+
+.slider_size {
+    transition: .5s;
+    height: 40px;
+    position: absolute;
+    border-radius: 30px;
+    background-color: white;
+}
+.header_size {
+    margin-top: -50px;
+}
+
+/* добавки */
+
+
+.pizza_toppings {
+    display: flex;
+    gap: 10px;
+}
+
+.pizza_order_topping {
+    width: 160px;
+    height: 240px;
+    box-shadow: rgba(128,128,129,128) 0 4px 15px;
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box;
+    transition: .5s;
+    border: 2px solid white;
+}
+
+.pizza_order_topping:hover {
+    border-color: rgb(255, 105, 0);
+}
+
+.pizza_order_topping_active {
+    border-color: rgb(255, 105, 0);
+}
+
+.pizza_topping_name {
+    text-align: center;
+}
+
+.pizza_topping_price {
+    font-weight: bold;
+}
+
+.pizza_topping_img {
+    display: block;
+    max-width: 130px;
+}
+
+
+
+/*кнопка*/
+
+.pizza_button {
+    margin-top: 180px;
+    border: none;
+    width: 100%;
+    border-radius: 100px;
+    font-size: 18px;
+    height: 70px;
+    color: white;
+    background-color: rgb(255, 105, 0);
+}
